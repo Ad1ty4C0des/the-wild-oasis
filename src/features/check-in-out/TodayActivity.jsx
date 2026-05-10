@@ -16,6 +16,14 @@ const StyledToday = styled.div`
   flex-direction: column;
   gap: 2.4rem;
   grid-column: 1 / span 2;
+
+  @media (max-width: 1200px) {
+    grid-column: 1 / -1;
+  }
+
+  @media (max-width: 600px) {
+    padding: 2rem 2rem;
+  }
 `;
 
 const TodayHeader = styled.div`

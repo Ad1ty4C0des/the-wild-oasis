@@ -4,11 +4,21 @@ import Heading from "../ui/Heading";
 import styled from "styled-components";
 
 const DashboardPage = styled.div`
-  /* Dashboard uses warm cream tertiary background */
-  margin: -3.2rem -4rem -4.8rem;
-  padding: 3.2rem 4rem 4.8rem;
+  /* Dashboard uses warm cream tertiary background — extends to fill Main */
+  margin: -3.2rem -4.8rem -4.8rem;
+  padding: 3.2rem 4.8rem 4.8rem;
   background-color: var(--color-tertiary-bg);
   min-height: 100%;
+
+  @media (max-width: 1200px) {
+    margin: -2.4rem -3.2rem -4rem;
+    padding: 2.4rem 3.2rem 4rem;
+  }
+
+  @media (max-width: 900px) {
+    margin: -2rem -2rem -3.2rem;
+    padding: 2rem 2rem 3.2rem;
+  }
 `;
 
 const PageHeader = styled.div`
@@ -16,6 +26,12 @@ const PageHeader = styled.div`
   align-items: flex-start;
   justify-content: space-between;
   margin-bottom: 2.4rem;
+  gap: 1.6rem;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: stretch;
+  }
 `;
 
 const HeaderLeft = styled.div`

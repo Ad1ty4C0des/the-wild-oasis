@@ -7,6 +7,7 @@ const StyledTable = styled.div`
   border-radius: var(--border-radius-xl);
   overflow: hidden;
   font-size: 1.4rem;
+  overflow-x: auto;
 `;
 
 const CommonRow = styled.header`
@@ -15,6 +16,7 @@ const CommonRow = styled.header`
   column-gap: 2.4rem;
   align-items: center;
   transition: none;
+  min-width: 80rem;
 `;
 
 const StyledHeader = styled(CommonRow)`

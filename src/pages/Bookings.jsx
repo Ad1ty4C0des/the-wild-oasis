@@ -7,6 +7,13 @@ const PageHeader = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+  gap: 1.6rem;
+  flex-wrap: wrap;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: stretch;
+  }
 `;
 
 const HeaderLeft = styled.div`

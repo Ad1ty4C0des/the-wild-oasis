@@ -4,6 +4,7 @@ const TableOperations = styled.div`
   display: flex;
   align-items: center;
   gap: 1.6rem;
+  flex-wrap: wrap;
 `;
 
 export default TableOperations;

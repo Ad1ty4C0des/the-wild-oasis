@@ -16,6 +16,10 @@ const StyledSidebar = styled.aside`
   flex-direction: column;
   gap: 2.4rem;
   overflow-y: auto;
+
+  @media (max-width: 900px) {
+    display: none;
+  }
 `;
 
 const BottomActions = styled.div`
