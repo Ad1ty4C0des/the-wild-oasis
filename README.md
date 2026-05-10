@@ -1,62 +1,104 @@
-# The Wild Oasis - Resort Management System
+# 🌿 The Wild Oasis — Management Suite
 
-![The Wild Oasis Logo](public/logo-light.png)
+<div align="center">
+  <img src="public/logo-light.png" alt="The Wild Oasis Logo" width="200"/>
+  
+  ### Your premium hotel management platform. 
+  *Streamline operations, delight guests, and grow your business with ease.*
+  
+  <br />
 
-A modern web application for managing resort operations including cabin bookings, guest check-ins, and staff management.
+  ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+  ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
+  ![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
+  ![Styled Components](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white)
+  ![React Query](https://img.shields.io/badge/-React%20Query-FF4154?style=for-the-badge&logo=react%20query&logoColor=white)
 
-## Features
+</div>
 
-- **Cabin Management** - Create, edit, and delete cabin listings with photos and pricing
-- **Booking System** - Manage reservations with check-in/out functionality
-- **User Authentication** - Secure login/logout with Supabase integration
-- **Dashboard Analytics** - Visualize bookings and occupancy statistics
-- **Dark Mode** - Toggle between light/dark themes
-- **Responsive Design** - Mobile-friendly interface
+---
 
-## Technologies
+## ✨ Overview
 
-- React.js + Vite
-- React Router
-- Supabase (Backend)
-- date-fns (Date utilities)
-- Styled Components
+**The Wild Oasis** is a fully-featured, full-stack resort management system designed to handle the day-to-day operations of a boutique hotel. 
 
-## Installation
+Recently redesigned with a "**Luxe-Naturalist**" aesthetic, the application provides a premium, highly responsive, and meticulously animated user interface that feels both powerful and elegant. Built with modern React and backed by Supabase, it offers a seamless experience for hotel staff to manage bookings, cabins, and guests.
 
-1. Clone repository:
+## 🚀 Key Features
 
-```bash
-git clone https://github.com/yourusername/the-wild-oasis.git
-```
+- **📊 Comprehensive Dashboard:** Real-time analytics, sales charts, and occupancy statistics at a glance.
+- **📅 Booking Management:** Complete guest lifecycle tracking from unconfirmed reservations to check-outs. Includes dynamic custom-animated filtering and sorting.
+- **🏡 Cabin Inventory:** Create, edit, and delete cabin listings, complete with capacity limits, pricing, and discount tracking.
+- **🌗 Seamless Dark Mode:** A meticulously crafted dark theme that shifts the aesthetic while maintaining perfect contrast and readability.
+- **✨ Premium UI/UX:** Features a Bento-grid layout, custom slide-in animations for dropdowns and context menus, fluid sliding sidebar navigation, and specialized contextual color palettes (e.g., warm cream dashboard vs. clean blue-lavender data tables).
+- **📱 Fully Responsive:** Carefully optimized layout that gracefully adapts from massive 24" desktop monitors all the way down to mobile devices, ensuring no workflow is compromised on the go.
+- **🔐 Secure Authentication:** Role-based access control and secure login flows powered by Supabase.
 
-2. Install dependencies:
+## 🛠️ Technology Stack
 
-```bash
-npm install
-```
+**Frontend:**
+- **React 18** — UI Component Architecture
+- **Vite** — Lightning-fast build tool
+- **React Router 6** — SPA Navigation
+- **TanStack Query (React Query)** — Powerful asynchronous state management and data fetching
+- **Styled-Components** — CSS-in-JS for scalable, scoped, and themeable styling
+- **React Hook Form** — Performant, flexible, and extensible forms
+- **Recharts** — Composable charting library for dashboard analytics
+- **React Hot Toast** — Elegant notifications
 
-3. Create `.env` file:
+**Backend:**
+- **Supabase** — Open-source Firebase alternative (PostgreSQL database, Authentication, Storage)
 
-```env
-VITE_SUPABASE_URL=your-supabase-url
-VITE_SUPABASE_ANON_KEY=your-anon-key
-```
+## 📸 Sneak Peek
 
-4. Start development server:
+*(You can add your own screenshots to the `public` folder and update the paths below!)*
 
-```bash
-npm run dev
-```
+| Dashboard (Light Mode) | Dashboard (Dark Mode) |
+| :---: | :---: |
+| <img src="https://via.placeholder.com/600x350/F9F6F0/1b4332?text=Dashboard+Light+Mode" width="400" /> | <img src="https://via.placeholder.com/600x350/18212f/6fbc94?text=Dashboard+Dark+Mode" width="400" /> |
+| **Bookings View** | **Login Screen** |
+| <img src="https://via.placeholder.com/600x350/f9f9ff/1b4332?text=Bookings+Table" width="400" /> | <img src="https://via.placeholder.com/600x350/1b4332/ffffff?text=Login+Screen" width="400" /> |
 
-## Configuration
+## 💻 Installation & Setup
 
-Set up your Supabase project with tables for:
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/yourusername/the-wild-oasis.git
+   cd the-wild-oasis
+   ```
 
-- Cabins
-- Bookings
-- Guests
-- Settings
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-## License
+3. **Environment Setup:**
+   Create a `.env` file in the root directory and add your Supabase credentials:
+   ```env
+   VITE_SUPABASE_URL=your_supabase_project_url
+   VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+   ```
 
-MIT License - see [LICENSE](LICENSE) for details
+4. **Start the development server:**
+   ```bash
+   npm run dev
+   ```
+
+## 🗄️ Database Configuration
+
+To fully run this project, you need to set up a Supabase project with the following tables and their respective Row Level Security (RLS) policies:
+- `cabins` (id, name, maxCapacity, regularPrice, discount, description, image)
+- `bookings` (id, created_at, startDate, endDate, numNights, numGuests, cabinPrice, extrasPrice, totalPrice, status, hasBreakfast, isPaid, observations, cabinId, guestId)
+- `guests` (id, created_at, fullName, email, nationality, nationalID, countryFlag)
+- `settings` (id, created_at, minBookingLength, maxBookingLength, maxGuestsPerBooking, breakfastPrice)
+
+*Note: Storage buckets for cabin images and avatar uploads must also be configured.*
+
+## 📜 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+<div align="center">
+  <i>Designed and built with ❤️ for better hospitality management.</i>
+</div>
