@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import Header from "./Header";
@@ -54,10 +55,12 @@ const Container = styled.div`
 `;
 
 function AppLayout() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
   return (
     <StyledAppLayout>
-      <Header />
-      <Sidebar />
+      <Header toggleSidebar={() => setIsSidebarOpen((s) => !s)} />
+      <Sidebar isOpen={isSidebarOpen} closeSidebar={() => setIsSidebarOpen(false)} />
       <Main>
         <Container>
           <Outlet />

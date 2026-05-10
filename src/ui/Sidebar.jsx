@@ -1,10 +1,11 @@
 import styled from "styled-components";
 import Logo from "./Logo";
 import MainNav from "./MainNav";
-import { HiOutlineMoon, HiOutlineSun, HiArrowRightOnRectangle } from "react-icons/hi2";
+import { HiOutlineMoon, HiOutlineSun, HiArrowRightOnRectangle, HiOutlineXMark } from "react-icons/hi2";
 import { useDarkMode } from "../context/DarkModeContext";
 import { useLogout } from "../features/authentication/useLogout";
 import SpinnerMini from "./SpinnerMini";
+import ButtonIcon from "./ButtonIcon";
 
 const StyledSidebar = styled.aside`
   background-color: var(--color-grey-0);
@@ -18,7 +19,47 @@ const StyledSidebar = styled.aside`
   overflow-y: auto;
 
   @media (max-width: 900px) {
-    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 26rem;
+    height: 100vh;
+    z-index: 999;
+    transition: transform 0.3s ease-in-out;
+    transform: ${(props) => (props.isOpen ? "translateX(0)" : "translateX(-100%)")};
+  }
+`;
+
+const Overlay = styled.div`
+  display: none;
+  @media (max-width: 900px) {
+    display: ${(props) => (props.isOpen ? "block" : "none")};
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+    backdrop-filter: blur(4px);
+    transition: all 0.3s;
+  }
+`;
+
+const HeaderRow = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+  @media (min-width: 901px) {
+    justify-content: center;
+  }
+`;
+
+const CloseButton = styled.div`
+  display: none;
+  @media (max-width: 900px) {
+    display: block;
   }
 `;
 
@@ -72,26 +113,37 @@ const LogoutAction = styled(SidebarAction)`
   &:hover svg { color: var(--color-red-800); }
 `;
 
-function Sidebar() {
+function Sidebar({ isOpen, closeSidebar }) {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   const { logout, isLoading } = useLogout();
 
   return (
-    <StyledSidebar>
-      <Logo />
-      <MainNav />
+    <>
+      <Overlay isOpen={isOpen} onClick={closeSidebar} />
+      <StyledSidebar isOpen={isOpen}>
+        <HeaderRow>
+          <Logo />
+          <CloseButton>
+            <ButtonIcon onClick={closeSidebar}>
+              <HiOutlineXMark />
+            </ButtonIcon>
+          </CloseButton>
+        </HeaderRow>
+        
+        <MainNav closeSidebar={closeSidebar} />
 
-      <BottomActions>
-        <SidebarAction onClick={toggleDarkMode}>
-          {isDarkMode ? <HiOutlineSun /> : <HiOutlineMoon />}
-          <span>Dark Mode</span>
-        </SidebarAction>
-        <LogoutAction onClick={logout} disabled={isLoading}>
-          {!isLoading ? <HiArrowRightOnRectangle /> : <SpinnerMini />}
-          <span>Logout</span>
-        </LogoutAction>
-      </BottomActions>
-    </StyledSidebar>
+        <BottomActions>
+          <SidebarAction onClick={toggleDarkMode}>
+            {isDarkMode ? <HiOutlineSun /> : <HiOutlineMoon />}
+            <span>Dark Mode</span>
+          </SidebarAction>
+          <LogoutAction onClick={logout} disabled={isLoading}>
+            {!isLoading ? <HiArrowRightOnRectangle /> : <SpinnerMini />}
+            <span>Logout</span>
+          </LogoutAction>
+        </BottomActions>
+      </StyledSidebar>
+    </>
   );
 }
 

@@ -114,7 +114,7 @@ const NAV_ITEMS = [
   { to: "/settings", icon: HiOutlineCog6Tooth, label: "Settings" },
 ];
 
-function MainNav() {
+function MainNav({ closeSidebar }) {
   const location = useLocation();
   const listRef = useRef(null);
   const [indicator, setIndicator] = useState({
@@ -152,7 +152,7 @@ function MainNav() {
 
         {NAV_ITEMS.map(({ to, icon: Icon, label }) => (
           <li key={to}>
-            <StyledNavLink to={to}>
+            <StyledNavLink to={to} onClick={closeSidebar}>
               <Icon />
               <span>{label}</span>
             </StyledNavLink>

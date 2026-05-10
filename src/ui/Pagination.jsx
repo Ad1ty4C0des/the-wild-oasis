@@ -8,12 +8,22 @@ const StyledPagination = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    gap: 1.2rem;
+    align-items: flex-start;
+  }
 `;
 
 const P = styled.p`
   font-size: 1.3rem;
   color: var(--color-grey-500);
   margin-left: 0.8rem;
+
+  @media (max-width: 600px) {
+    margin-left: 0;
+  }
 
   & span {
     font-weight: 600;
@@ -24,6 +34,11 @@ const P = styled.p`
 const Buttons = styled.div`
   display: flex;
   gap: 0.6rem;
+  
+  @media (max-width: 600px) {
+    width: 100%;
+    justify-content: space-between;
+  }
 `;
 
 const PaginationButton = styled.button`

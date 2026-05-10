@@ -34,9 +34,16 @@ const StyledModal = styled.div`
   border-radius: var(--border-radius-xl);
   box-shadow: var(--shadow-lg);
   padding: 3.2rem 4rem;
+  max-width: 95vw;
+  max-height: 95vh;
+  overflow-y: auto;
 
   /* Entrance animation */
   animation: ${scaleUp} 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+
+  @media (max-width: 600px) {
+    padding: 3.2rem 2rem;
+  }
 `;
 
 const Overlay = styled.div`
