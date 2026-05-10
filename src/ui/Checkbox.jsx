@@ -5,11 +5,12 @@ const StyledCheckbox = styled.div`
   gap: 1.6rem;
 
   & input[type="checkbox"] {
-    height: 2.4rem;
-    width: 2.4rem;
+    height: 2rem;
+    width: 2rem;
     outline-offset: 2px;
     transform-origin: 0;
     accent-color: var(--color-brand-600);
+    border-radius: var(--border-radius-tiny);
   }
 
   & input[type="checkbox"]:disabled {
@@ -18,6 +19,8 @@ const StyledCheckbox = styled.div`
 
   & label {
     flex: 1;
+    font-family: "Inter", sans-serif;
+    font-size: 1.4rem;
 
     display: flex;
     align-items: center;

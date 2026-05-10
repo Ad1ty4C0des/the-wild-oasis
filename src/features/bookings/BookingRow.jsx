@@ -20,10 +20,10 @@ import { useCheckout } from "../check-in-out/useCheckout";
 import { useDeleteBooking } from "./useDeleteBooking";
 
 const Cabin = styled.div`
-  font-size: 1.6rem;
+  font-family: "Inter", sans-serif;
+  font-size: 1.4rem;
   font-weight: 600;
-  color: var(--color-grey-600);
-  font-family: "Sono";
+  color: var(--color-grey-700);
 `;
 
 const Stacked = styled.div`
@@ -32,7 +32,9 @@ const Stacked = styled.div`
   gap: 0.2rem;
 
   & span:first-child {
-    font-weight: 500;
+    font-weight: 600;
+    font-size: 1.4rem;
+    color: var(--color-grey-800);
   }
 
   & span:last-child {
@@ -42,8 +44,10 @@ const Stacked = styled.div`
 `;
 
 const Amount = styled.div`
-  font-family: "Sono";
-  font-weight: 500;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 1.4rem;
+  color: var(--color-grey-800);
 `;
 
 function BookingRow({

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const FileInput = styled.input.attrs({ type: "file" })`
+  font-family: "Inter", sans-serif;
   font-size: 1.4rem;
   border-radius: var(--border-radius-sm);
 
@@ -11,10 +12,10 @@ const FileInput = styled.input.attrs({ type: "file" })`
     margin-right: 1.2rem;
     border-radius: var(--border-radius-sm);
     border: none;
-    color: var(--color-brand-50);
+    color: #ffffff;
     background-color: var(--color-brand-600);
     cursor: pointer;
-    transition: color 0.2s, background-color 0.2s;
+    transition: all 0.2s ease;
 
     &:hover {
       background-color: var(--color-brand-700);

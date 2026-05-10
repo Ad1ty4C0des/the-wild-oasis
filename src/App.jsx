@@ -69,12 +69,16 @@ function App() {
             error: {
               duration: 5000,
             },
-            styles: {
-              fontSize: "16px",
+            style: {
+              fontSize: "14px",
               maxWidth: "500px",
-              padding: "16px 24px",
+              padding: "14px 24px",
               backgroundColor: "var(--color-grey-0)",
               color: "var(--color-grey-700)",
+              borderRadius: "12px",
+              border: "1px solid var(--color-grey-100)",
+              fontFamily: "Inter, sans-serif",
+              boxShadow: "0 4px 24px rgba(27, 67, 50, 0.08)",
             },
           }}
         />

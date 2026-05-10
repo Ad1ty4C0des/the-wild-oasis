@@ -5,6 +5,7 @@ const StyledDataItem = styled.div`
   align-items: center;
   gap: 1.6rem;
   padding: 0.8rem 0;
+  font-family: "Inter", sans-serif;
 `;
 
 const Label = styled.span`
@@ -12,6 +13,7 @@ const Label = styled.span`
   align-items: center;
   gap: 0.8rem;
   font-weight: 500;
+  font-size: 1.4rem;
 
   & svg {
     width: 2rem;

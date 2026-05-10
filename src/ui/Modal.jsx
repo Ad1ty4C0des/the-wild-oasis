@@ -1,8 +1,29 @@
 import { cloneElement, createContext, useContext, useState } from "react";
 import { createPortal } from "react-dom";
 import { HiXMark } from "react-icons/hi2";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { useOutsideClick } from "../hooks/useOutsideClick";
+
+/* ── Animations ── */
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
+const scaleUp = keyframes`
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+`;
 
 const StyledModal = styled.div`
   position: fixed;
@@ -10,10 +31,12 @@ const StyledModal = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: var(--color-grey-0);
-  border-radius: var(--border-radius-lg);
+  border-radius: var(--border-radius-xl);
   box-shadow: var(--shadow-lg);
   padding: 3.2rem 4rem;
-  transition: all 0.5s;
+
+  /* Entrance animation */
+  animation: ${scaleUp} 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 `;
 
 const Overlay = styled.div`
@@ -22,10 +45,12 @@ const Overlay = styled.div`
   left: 0;
   width: 100%;
   height: 100vh;
-  background-color: var(--backdrop-color);
-  backdrop-filter: blur(4px);
+  background-color: rgba(27, 67, 50, 0.2);
+  backdrop-filter: blur(12px);
   z-index: 1000;
-  transition: all 0.5s;
+
+  /* Entrance animation */
+  animation: ${fadeIn} 0.25s ease-out forwards;
 `;
 
 const Button = styled.button`
@@ -46,9 +71,6 @@ const Button = styled.button`
   & svg {
     width: 2.4rem;
     height: 2.4rem;
-    /* Sometimes we need both */
-    /* fill: var(--color-grey-500);
-    stroke: var(--color-grey-500); */
     color: var(--color-grey-500);
   }
 `;

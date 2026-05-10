@@ -2,12 +2,11 @@ import { createContext, useContext } from "react";
 import styled from "styled-components";
 
 const StyledTable = styled.div`
-  border: 1px solid var(--color-grey-200);
-
-  font-size: 1.4rem;
   background-color: var(--color-grey-0);
-  border-radius: 7px;
+  border: 1px solid var(--color-grey-100);
+  border-radius: var(--border-radius-xl);
   overflow: hidden;
+  font-size: 1.4rem;
 `;
 
 const CommonRow = styled.header`
@@ -24,21 +23,29 @@ const StyledHeader = styled(CommonRow)`
   background-color: var(--color-grey-50);
   border-bottom: 1px solid var(--color-grey-100);
   text-transform: uppercase;
-  letter-spacing: 0.4px;
+  letter-spacing: 0.05em;
+  font-family: "Inter", sans-serif;
+  font-size: 1.1rem;
   font-weight: 600;
-  color: var(--color-grey-600);
+  color: var(--color-grey-500);
 `;
 
 const StyledBody = styled.section`
-  margin: 0.4rem 0;
+  margin: 0;
 `;
 
 const StyledRow = styled(CommonRow)`
-  padding: 1.2rem 2.4rem;
-
+  padding: 1.6rem 2.4rem;
+  
   &:not(:last-child) {
     border-bottom: 1px solid var(--color-grey-100);
   }
+
+  &:hover {
+    background-color: var(--color-grey-50);
+  }
+
+  transition: background-color 0.15s ease;
 `;
 
 const Footer = styled.footer`
@@ -57,6 +64,7 @@ const Empty = styled.p`
   font-weight: 500;
   text-align: center;
   margin: 2.4rem;
+  color: var(--color-grey-500);
 `;
 
 const TableContext = createContext();

@@ -13,13 +13,13 @@ const StyledErrorFallback = styled.main`
 `;
 
 const Box = styled.div`
-  /* Box */
+  /* Bento Card */
   background-color: var(--color-grey-0);
   border: 1px solid var(--color-grey-100);
-  border-radius: var(--border-radius-md);
+  border-radius: var(--border-radius-xl);
 
   padding: 4.8rem;
-  flex: 0 1 96rem;
+  flex: 0 1 64rem;
   text-align: center;
 
   & h1 {
@@ -27,9 +27,10 @@ const Box = styled.div`
   }
 
   & p {
-    font-family: "Sono";
+    font-family: "Inter", sans-serif;
     margin-bottom: 3.2rem;
     color: var(--color-grey-500);
+    font-size: 1.4rem;
   }
 `;
 

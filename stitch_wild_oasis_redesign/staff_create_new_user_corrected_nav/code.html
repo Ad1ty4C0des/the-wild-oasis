@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Create New User - The Wild Oasis</title>
+<!-- Fonts & Icons -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Design System Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface": "#f9f9ff",
+                      "on-primary-fixed-variant": "#274e3d",
+                      "surface-container-high": "#e1e8fd",
+                      "secondary-container": "#fdab76",
+                      "surface-container": "#e9edff",
+                      "on-secondary-fixed": "#311300",
+                      "surface-variant": "#dce2f7",
+                      "on-tertiary": "#ffffff",
+                      "on-error": "#ffffff",
+                      "inverse-primary": "#a5d0b9",
+                      "surface-bright": "#f9f9ff",
+                      "tertiary-container": "#3c3c38",
+                      "on-surface-variant": "#414844",
+                      "on-secondary": "#ffffff",
+                      "surface-tint": "#3f6653",
+                      "primary-container": "#1b4332",
+                      "on-primary-fixed": "#002114",
+                      "tertiary-fixed": "#e5e2dc",
+                      "tertiary-fixed-dim": "#c9c6c1",
+                      "surface-container-highest": "#dce2f7",
+                      "secondary": "#8d4e21",
+                      "secondary-fixed": "#ffdbc7",
+                      "primary-fixed-dim": "#a5d0b9",
+                      "surface-container-low": "#f1f3ff",
+                      "outline-variant": "#c1c8c2",
+                      "on-secondary-container": "#773d11",
+                      "on-tertiary-fixed": "#1c1c18",
+                      "on-background": "#141b2b",
+                      "outline": "#717973",
+                      "on-secondary-fixed-variant": "#70370b",
+                      "surface-dim": "#d3daef",
+                      "on-surface": "#141b2b",
+                      "error": "#ba1a1a",
+                      "surface-container-lowest": "#ffffff",
+                      "error-container": "#ffdad6",
+                      "background": "#f9f9ff",
+                      "tertiary": "#262623",
+                      "on-tertiary-fixed-variant": "#474743",
+                      "on-tertiary-container": "#a8a6a1",
+                      "inverse-on-surface": "#edf0ff",
+                      "inverse-surface": "#293040",
+                      "on-error-container": "#93000a",
+                      "on-primary": "#ffffff",
+                      "secondary-fixed-dim": "#ffb688",
+                      "primary": "#012d1d",
+                      "on-primary-container": "#86af99",
+                      "primary-fixed": "#c1ecd4"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-md": "24px",
+                      "container-padding": "32px",
+                      "bento-gap": "24px",
+                      "margin-lg": "48px",
+                      "unit": "4px",
+                      "margin-sm": "16px"
+              },
+              "fontFamily": {
+                      "headline-lg-mobile": ["Hanken Grotesk"],
+                      "title-md": ["Hanken Grotesk"],
+                      "body-sm": ["Inter"],
+                      "label-caps": ["Inter"],
+                      "headline-lg": ["Hanken Grotesk"],
+                      "display-lg": ["Hanken Grotesk"],
+                      "body-lg": ["Inter"]
+              },
+              "fontSize": {
+                      "headline-lg-mobile": ["28px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                      "title-md": ["20px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                      "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                      "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                      "headline-lg": ["32px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                      "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                      "body-lg": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }]
+              }
+            }
+          }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-sm text-body-sm antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- SideNavBar (Generated from JSON) -->
+<aside class="hidden md:flex w-64 h-full fixed left-0 top-0 bg-surface shadow-[30px_0_30px_rgba(27,67,50,0.04)] flex-col overflow-y-auto border-r border-outline-variant/20 z-50">
+<!-- Brand Header -->
+<div class="px-6 pt-8 pb-10 flex flex-col items-start gap-4">
+<div class="h-12 w-12 rounded-xl bg-primary flex items-center justify-center text-on-primary shadow-sm">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">eco</span>
+</div>
+<div>
+<h1 class="text-headline-lg font-headline-lg text-primary tracking-tight">The Wild Oasis</h1>
+<p class="text-on-surface-variant font-label-caps text-label-caps mt-1 uppercase tracking-wider">Management Suite</p>
+</div>
+</div>
+<!-- Navigation Tabs -->
+<nav class="flex-1 flex flex-col gap-2 px-0">
+<!-- Dashboard (Inactive) -->
+<a class="text-on-surface-variant flex items-center gap-3 px-6 py-4 transition-colors hover:bg-surface-container hover:text-primary" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-title-md text-title-md">Dashboard</span>
+</a>
+<!-- Bookings (Inactive) -->
+<a class="text-on-surface-variant flex items-center gap-3 px-6 py-4 transition-colors hover:bg-surface-container hover:text-primary" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="font-title-md text-title-md">Bookings</span>
+</a>
+<!-- Cabins (Inactive) -->
+<a class="text-on-surface-variant flex items-center gap-3 px-6 py-4 transition-colors hover:bg-surface-container hover:text-primary" href="#">
+<span class="material-symbols-outlined">home_work</span>
+<span class="font-title-md text-title-md">Cabins</span>
+</a>
+<!-- Guests (Inactive) -->
+<a class="text-primary font-bold border-r-4 border-primary bg-primary-container/10 flex items-center gap-3 px-6 py-4 scale-[1.02] transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">group</span>
+<span class="font-title-md text-title-md">Users</span>
+</a>
+<!-- Settings (Active - Staff management falls under settings/system) -->
+<a class="text-on-surface-variant flex items-center gap-3 px-6 py-4 transition-colors hover:bg-surface-container hover:text-primary" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-title-md text-title-md">Settings</span>
+</a>
+</nav>
+<!-- Footer Actions -->
+<div class="p-6 border-t border-outline-variant/10 flex flex-col gap-2 mt-auto">
+<button class="text-on-surface-variant flex items-center gap-3 py-3 px-2 transition-colors hover:bg-surface-container hover:text-primary rounded-lg w-full text-left">
+<span class="material-symbols-outlined">dark_mode</span>
+<span class="font-title-md text-title-md text-sm">Dark Mode</span>
+</button>
+<button class="text-error flex items-center gap-3 py-3 px-2 transition-colors hover:bg-error-container hover:text-on-error-container rounded-lg w-full text-left">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-title-md text-title-md text-sm">Logout</span>
+</button>
+</div>
+</aside>
+<!-- Main Content Wrapper -->
+<div class="md:ml-64 min-h-screen flex flex-col relative bg-surface">
+<!-- TopNavBar (Generated from JSON) -->
+<header class="hidden md:flex justify-between items-center px-container-padding py-4 fixed top-0 right-0 w-[calc(100%-16rem)] z-40 bg-surface/80 backdrop-blur-md border-b border-outline-variant/10">
+<!-- Search Bar (Left) -->
+<div class="flex items-center gap-2 bg-surface-container-lowest border border-outline-variant/30 rounded-full px-4 py-2 w-64 shadow-sm focus-within:border-primary focus-within:ring-1 focus-within:ring-primary transition-all">
+<span class="material-symbols-outlined text-on-surface-variant text-sm">search</span>
+<input class="bg-transparent border-none outline-none w-full font-body-sm text-body-sm text-on-surface placeholder:text-on-surface-variant" placeholder="Search..." type="text"/>
+</div>
+<!-- Trailing Actions & Profile -->
+<div class="flex items-center gap-6">
+<button class="text-on-surface-variant hover:bg-surface-container-high transition-all scale-95 active:scale-90 duration-150 p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:bg-surface-container-high transition-all scale-95 active:scale-90 duration-150 p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined">contrast</span>
+</button>
+<div class="h-10 w-10 rounded-full overflow-hidden border border-outline-variant/20 shadow-sm cursor-pointer hover:opacity-90 transition-opacity">
+<img alt="Staff Member Profile" class="h-full w-full object-cover" data-alt="A close-up portrait of a professional male staff member with a warm, welcoming expression. The lighting is soft, natural, and highly professional, fitting a high-end corporate or hospitality setting. The image is set against a subtle, light-toned background that seamlessly matches the Luxe-Naturalist cream and forest green aesthetic of the application interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCCz6Tqs_JDty_aXrKOr90VAehq6Eqi-fT3V3hUKQObkTZOpRHfczjygUJq21Ap_EWH5PeT-6awaTbasqP8Xw91zpLJ7Fnfmux-5hS7cWsSubp7-VoirH7BEdgKmVT-SROz-zJ5t7NX7aT-j3bcLcexJ0bMnRhSzzbdKZ-71u-UC5dp3pZNCpyWlS9BJnajo8fd9FUMZFUyPUdGwuezujvsP4x8BXt8j2XHUkiRRvPPF-JD-d2V9bEmvQTJJIPRx0y38l5M0Fxt50"/>
+</div>
+</div>
+</header>
+<!-- Page Canvas -->
+<main class="flex-1 px-container-padding pt-32 pb-container-padding flex flex-col items-center justify-center">
+<!-- Page Header Container -->
+<div class="w-full max-w-xl text-center mb-bento-gap">
+<h2 class="font-display-lg text-display-lg text-primary mb-4 tracking-tight">Create New User</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-md mx-auto leading-relaxed">
+                    Add a new staff member to the system to grant management access.
+                </p>
+</div>
+<!-- Centered Form Card (Bento Style & Glassmorphic hint) -->
+<div class="w-full max-w-xl bg-surface-container-lowest rounded-xl p-container-padding shadow-[0_8px_30px_rgba(27,67,50,0.04)] border border-outline-variant/10 relative overflow-hidden">
+<!-- Subtle top decorative gradient -->
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-inverse-primary"></div>
+<form action="#" class="flex flex-col gap-margin-md mt-2" method="POST">
+<!-- Field 1: Full Name -->
+<div class="relative group">
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-unit uppercase tracking-wider transition-colors group-focus-within:text-primary" for="fullName">
+                            Full Name
+                        </label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-0 bottom-3 text-on-surface-variant group-focus-within:text-primary transition-colors">person</span>
+<input class="w-full bg-transparent border-0 border-b border-outline-variant/50 focus:border-primary focus:ring-0 pl-8 pr-0 py-3 font-body-lg text-body-lg text-on-surface transition-all outline-none" id="fullName" name="fullName" placeholder="Jane Doe" required="" type="text"/>
+</div>
+</div>
+<!-- Field 2: Email Address -->
+<div class="relative group">
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-unit uppercase tracking-wider transition-colors group-focus-within:text-primary" for="email">
+                            Email Address
+                        </label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-0 bottom-3 text-on-surface-variant group-focus-within:text-primary transition-colors">mail</span>
+<input class="w-full bg-transparent border-0 border-b border-outline-variant/50 focus:border-primary focus:ring-0 pl-8 pr-0 py-3 font-body-lg text-body-lg text-on-surface transition-all outline-none" id="email" name="email" placeholder="jane.doe@thewildoasis.com" required="" type="email"/>
+</div>
+</div>
+<!-- Field 3: Password -->
+<div class="relative group">
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-unit uppercase tracking-wider transition-colors group-focus-within:text-primary" for="password">
+                            Password
+                        </label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-0 bottom-3 text-on-surface-variant group-focus-within:text-primary transition-colors">lock</span>
+<input class="w-full bg-transparent border-0 border-b border-outline-variant/50 focus:border-primary focus:ring-0 pl-8 pr-0 py-3 font-body-lg text-body-lg text-on-surface transition-all outline-none" id="password" name="password" placeholder="••••••••" required="" type="password"/>
+</div>
+</div>
+<!-- Field 4: Confirm Password -->
+<div class="relative group">
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-unit uppercase tracking-wider transition-colors group-focus-within:text-primary" for="confirmPassword">
+                            Confirm Password
+                        </label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-0 bottom-3 text-on-surface-variant group-focus-within:text-primary transition-colors">lock_reset</span>
+<input class="w-full bg-transparent border-0 border-b border-outline-variant/50 focus:border-primary focus:ring-0 pl-8 pr-0 py-3 font-body-lg text-body-lg text-on-surface transition-all outline-none" id="confirmPassword" name="confirmPassword" placeholder="••••••••" required="" type="password"/>
+</div>
+</div>
+<!-- Form Actions -->
+<div class="pt-margin-sm flex justify-end gap-4 items-center">
+<button class="font-title-md text-title-md text-secondary border border-outline/30 px-6 py-3 rounded-lg hover:bg-surface-container transition-colors focus:outline-none focus:ring-2 focus:ring-secondary/20" type="button">
+                            Cancel
+                        </button>
+<button class="font-title-md text-title-md bg-primary text-on-primary px-8 py-3 rounded-lg shadow-sm bg-gradient-to-b from-white/5 to-transparent hover:opacity-90 active:scale-[0.98] transition-all focus:outline-none focus:ring-2 focus:ring-primary/50 flex items-center gap-2" type="submit">
+<span>Create New User</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</form>
+</div>
+</main>
+</div>
+</body></html>

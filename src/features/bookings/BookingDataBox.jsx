@@ -13,19 +13,19 @@ import { Flag } from "../../ui/Flag";
 import { formatDistanceFromNow, formatCurrency } from "../../utils/helpers";
 
 const StyledBookingDataBox = styled.section`
-  /* Box */
+  /* Bento Card */
   background-color: var(--color-grey-0);
   border: 1px solid var(--color-grey-100);
-  border-radius: var(--border-radius-md);
+  border-radius: var(--border-radius-xl);
 
   overflow: hidden;
 `;
 
 const Header = styled.header`
-  background-color: var(--color-brand-500);
+  background-color: var(--color-brand-600);
   padding: 2rem 4rem;
-  color: #e0e7ff;
-  font-size: 1.8rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.6rem;
   font-weight: 500;
   display: flex;
   align-items: center;
@@ -45,7 +45,7 @@ const Header = styled.header`
   }
 
   & span {
-    font-family: "Sono";
+    font-family: "Hanken Grotesk", sans-serif;
     font-size: 2rem;
     margin-left: 4px;
   }
@@ -61,6 +61,7 @@ const Guest = styled.div`
   gap: 1.2rem;
   margin-bottom: 1.6rem;
   color: var(--color-grey-500);
+  font-family: "Inter", sans-serif;
 
   & p:first-of-type {
     font-weight: 500;
@@ -73,7 +74,7 @@ const Price = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 1.6rem 3.2rem;
-  border-radius: var(--border-radius-sm);
+  border-radius: var(--border-radius-md);
   margin-top: 2.4rem;
 
   background-color: ${(props) =>
@@ -83,8 +84,9 @@ const Price = styled.div`
 
   & p:last-child {
     text-transform: uppercase;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     font-weight: 600;
+    letter-spacing: 0.05em;
   }
 
   svg {
@@ -99,6 +101,7 @@ const Footer = styled.footer`
   font-size: 1.2rem;
   color: var(--color-grey-500);
   text-align: right;
+  font-family: "Inter", sans-serif;
 `;
 
 // A purely presentational component

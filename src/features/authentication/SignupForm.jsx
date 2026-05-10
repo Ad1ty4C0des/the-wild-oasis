@@ -4,8 +4,15 @@ import Form from "../../ui/Form";
 import FormRow from "../../ui/FormRow";
 import Input from "../../ui/Input";
 import { useSignup } from "./useSignup";
+import styled from "styled-components";
 
 // Email regex: /\S+@\S+\.\S+/
+
+const ProgressBar = styled.div`
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-brand-600) 0%, var(--color-accent-500) 100%);
+  border-radius: 100px;
+`;
 
 function SignupForm() {
   const { signup, isLoading } = useSignup();
@@ -23,10 +30,12 @@ function SignupForm() {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
+      <ProgressBar />
       <FormRow label="Full name" error={errors?.fullName?.message}>
         <Input
           type="text"
           id="fullName"
+          placeholder="Jane Doe"
           {...register("fullName", {
             required: "This field is required",
           })}
@@ -38,6 +47,7 @@ function SignupForm() {
         <Input
           type="email"
           id="email"
+          placeholder="jane.doe@thewildoasis.com"
           {...register("email", {
             required: "This field is required",
             pattern: {
@@ -56,6 +66,7 @@ function SignupForm() {
         <Input
           type="password"
           id="password"
+          placeholder="••••••••"
           {...register("password", {
             required: "This field is required",
             minLength: {
@@ -71,6 +82,7 @@ function SignupForm() {
         <Input
           type="password"
           id="passwordConfirm"
+          placeholder="••••••••"
           {...register("passwordConfirm", {
             required: "This field is required",
             validate: (value) =>
@@ -90,7 +102,7 @@ function SignupForm() {
         >
           Cancel
         </Button>
-        <Button disabled={isLoading}>Create new user</Button>
+        <Button disabled={isLoading}>Create New User →</Button>
       </FormRow>
     </Form>
   );

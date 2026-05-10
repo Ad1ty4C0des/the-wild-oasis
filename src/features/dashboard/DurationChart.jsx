@@ -11,10 +11,10 @@ import {
 import { useDarkMode } from "../../context/DarkModeContext";
 
 const ChartBox = styled.div`
-  /* Box */
+  /* Bento Card */
   background-color: var(--color-grey-0);
   border: 1px solid var(--color-grey-100);
-  border-radius: var(--border-radius-md);
+  border-radius: var(--border-radius-xl);
 
   padding: 2.4rem 3.2rem;
   grid-column: 3 / span 2;
@@ -32,42 +32,42 @@ const startDataLight = [
   {
     duration: "1 night",
     value: 0,
-    color: "#ef4444",
+    color: "#1b4332",
   },
   {
     duration: "2 nights",
     value: 0,
-    color: "#f97316",
+    color: "#274e3d",
   },
   {
     duration: "3 nights",
     value: 0,
-    color: "#eab308",
+    color: "#3f6653",
   },
   {
     duration: "4-5 nights",
     value: 0,
-    color: "#84cc16",
+    color: "#5a9e7c",
   },
   {
     duration: "6-7 nights",
     value: 0,
-    color: "#22c55e",
+    color: "#8d4e21",
   },
   {
     duration: "8-14 nights",
     value: 0,
-    color: "#14b8a6",
+    color: "#a5652e",
   },
   {
     duration: "15-21 nights",
     value: 0,
-    color: "#3b82f6",
+    color: "#c58a4f",
   },
   {
     duration: "21+ nights",
     value: 0,
-    color: "#a855f7",
+    color: "#ffdbc7",
   },
 ];
 
@@ -75,42 +75,42 @@ const startDataDark = [
   {
     duration: "1 night",
     value: 0,
-    color: "#b91c1c",
+    color: "#6fbc94",
   },
   {
     duration: "2 nights",
     value: 0,
-    color: "#c2410c",
+    color: "#5a9e7c",
   },
   {
     duration: "3 nights",
     value: 0,
-    color: "#a16207",
+    color: "#3f6653",
   },
   {
     duration: "4-5 nights",
     value: 0,
-    color: "#4d7c0f",
+    color: "#274e3d",
   },
   {
     duration: "6-7 nights",
     value: 0,
-    color: "#15803d",
+    color: "#ffb688",
   },
   {
     duration: "8-14 nights",
     value: 0,
-    color: "#0f766e",
+    color: "#c58a4f",
   },
   {
     duration: "15-21 nights",
     value: 0,
-    color: "#1d4ed8",
+    color: "#8d4e21",
   },
   {
     duration: "21+ nights",
     value: 0,
-    color: "#7e22ce",
+    color: "#70370b",
   },
 ];
 
@@ -147,7 +147,7 @@ function DurationChart({ confirmedStays }) {
   const data = prepareData(startData, confirmedStays);
   return (
     <ChartBox>
-      <Heading as="h2">Stay duration summary</Heading>
+      <Heading as="h2">Stay Duration Summary</Heading>
 
       <ResponsiveContainer width="100%" height={240}>
         <PieChart>
@@ -161,7 +161,7 @@ function DurationChart({ confirmedStays }) {
             cy="50%"
             paddingAngle={3}
           >
-            {startDataLight.map((entry) => (
+            {data.map((entry) => (
               <Cell
                 fill={entry.color}
                 stroke={entry.color}
@@ -169,14 +169,26 @@ function DurationChart({ confirmedStays }) {
               />
             ))}
           </Pie>
-          <Tooltip />
+          <Tooltip
+            contentStyle={{
+              borderRadius: "12px",
+              border: "1px solid var(--color-grey-200)",
+              fontFamily: "Inter",
+              fontSize: "13px",
+            }}
+          />
           <Legend
             verticalAlign="middle"
             align="right"
             width="30%"
             layout="vertical"
-            iconSize={15}
+            iconSize={12}
             iconType="circle"
+            formatter={(value) => (
+              <span style={{ fontFamily: "Inter", fontSize: "12px", color: "var(--color-grey-600)" }}>
+                {value}
+              </span>
+            )}
           />
         </PieChart>
       </ResponsiveContainer>

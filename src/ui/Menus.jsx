@@ -1,8 +1,20 @@
 import { createContext, useContext, useState } from "react";
 import { createPortal } from "react-dom";
 import { HiEllipsisVertical } from "react-icons/hi2";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { useOutsideClick } from "../hooks/useOutsideClick";
+
+/* ── Animations ── */
+const slideIn = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+`;
 
 const Menu = styled.div`
   display: flex;
@@ -25,7 +37,7 @@ const StyledToggle = styled.button`
   & svg {
     width: 2.4rem;
     height: 2.4rem;
-    color: var(--color-grey-700);
+    color: var(--color-grey-500);
   }
 `;
 
@@ -33,11 +45,18 @@ const StyledList = styled.ul`
   position: fixed;
 
   background-color: var(--color-grey-0);
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--color-grey-100);
   border-radius: var(--border-radius-md);
+  overflow: hidden;
+  z-index: 100;
 
   right: ${(props) => props.position.x}px;
   top: ${(props) => props.position.y}px;
+
+  /* Entrance animation */
+  animation: ${slideIn} 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transform-origin: top right;
 `;
 
 const StyledButton = styled.button`
@@ -47,7 +66,8 @@ const StyledButton = styled.button`
   border: none;
   padding: 1.2rem 2.4rem;
   font-size: 1.4rem;
-  transition: all 0.2s;
+  font-family: "Inter", sans-serif;
+  transition: all 0.15s ease;
 
   display: flex;
   align-items: center;
@@ -61,7 +81,7 @@ const StyledButton = styled.button`
     width: 1.6rem;
     height: 1.6rem;
     color: var(--color-grey-400);
-    transition: all 0.3s;
+    transition: all 0.2s;
   }
 `;
 
@@ -119,7 +139,7 @@ function List({ id, children }) {
   );
 }
 
-function Button({ children, icon, onClick }) {
+function Button({ children, icon, onClick, disabled }) {
   const { close } = useContext(MenusContext);
   function handleClick() {
     onClick?.();
@@ -127,7 +147,7 @@ function Button({ children, icon, onClick }) {
   }
   return (
     <li>
-      <StyledButton onClick={handleClick}>
+      <StyledButton onClick={handleClick} disabled={disabled}>
         {icon}
         <span>{children}</span>
       </StyledButton>

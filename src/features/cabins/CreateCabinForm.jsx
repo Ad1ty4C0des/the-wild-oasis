@@ -4,7 +4,7 @@ import Button from "../../ui/Button";
 import FileInput from "../../ui/FileInput";
 import FormRow from "../../ui/FormRow";
 
-import { Textarea } from "../../ui/Textarea";
+import Textarea from "../../ui/Textarea";
 import { useForm } from "react-hook-form";
 
 import { useCreateCabin } from "./useCreateCabin";

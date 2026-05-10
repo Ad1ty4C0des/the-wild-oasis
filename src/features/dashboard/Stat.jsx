@@ -1,17 +1,18 @@
 import styled from "styled-components";
 
 const StyledStat = styled.div`
-  /* Box */
+  /* Bento Card */
   background-color: var(--color-grey-0);
   border: 1px solid var(--color-grey-100);
-  border-radius: var(--border-radius-md);
+  border-radius: var(--border-radius-xl);
 
-  padding: 1.6rem;
+  padding: 2rem 2.4rem;
   display: grid;
-  grid-template-columns: 6.4rem 1fr;
+  grid-template-columns: 5.2rem 1fr;
   grid-template-rows: auto auto;
   column-gap: 1.6rem;
   row-gap: 0.4rem;
+  align-items: center;
 `;
 
 const Icon = styled.div`
@@ -26,25 +27,28 @@ const Icon = styled.div`
   background-color: var(--color-${(props) => props.color}-100);
 
   & svg {
-    width: 3.2rem;
-    height: 3.2rem;
+    width: 2.4rem;
+    height: 2.4rem;
     color: var(--color-${(props) => props.color}-700);
   }
 `;
 
 const Title = styled.h5`
   align-self: end;
-  font-size: 1.2rem;
+  font-family: "Inter", sans-serif;
+  font-size: 1.1rem;
   text-transform: uppercase;
-  letter-spacing: 0.4px;
+  letter-spacing: 0.05em;
   font-weight: 600;
   color: var(--color-grey-500);
 `;
 
 const Value = styled.p`
+  font-family: "Hanken Grotesk", sans-serif;
   font-size: 2.4rem;
   line-height: 1;
-  font-weight: 500;
+  font-weight: 700;
+  color: var(--color-grey-800);
 `;
 
 function Stat({ icon, title, value, color }) {

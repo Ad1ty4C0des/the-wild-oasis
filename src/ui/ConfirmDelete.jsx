@@ -6,11 +6,14 @@ const StyledConfirmDelete = styled.div`
   width: 40rem;
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
+  gap: 1.6rem;
 
   & p {
     color: var(--color-grey-500);
-    margin-bottom: 1.2rem;
+    font-family: "Inter", sans-serif;
+    font-size: 1.4rem;
+    line-height: 1.6;
+    margin-bottom: 0.8rem;
   }
 
   & div {
@@ -21,8 +24,6 @@ const StyledConfirmDelete = styled.div`
 `;
 
 function ConfirmDelete({ resource, onConfirm, disabled, onCloseModal }) {
-  // function handleConfirmClick() {}
-
   return (
     <StyledConfirmDelete>
       <Heading type="h3">Delete {resource}</Heading>
