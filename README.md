@@ -53,7 +53,7 @@ Recently redesigned with a "**Luxe-Naturalist**" aesthetic, the application prov
 
 | Dashboard (Light Mode) | Dashboard (Dark Mode) |
 | :---: | :---: |
-| <img src="./public/sneap_peek/Screenshot 2026-05-10 092846.png" alt="Dashboard Light Mode" width="400" /> | <img src="./public/sneap_peek/Screenshot 2026-05-10 092945.png"alt="Dashboard Dark Mode" width="400" /> |
+| <img src="./public/sneap_peek/Screenshot 2026-05-10 092846.png" alt="Dashboard Light Mode" width="400" /> | <img src="./public/sneap_peek/Screenshot 2026-05-10 092945.png" alt="Dashboard Dark Mode" width="400" /> |
 | **Bookings View** | **Login Screen** |
 | <img src="./public/sneap_peek/Screenshot 2026-05-10 092924.png" alt="Bookings View" width="400" /> | <img src="./public/sneap_peek/Screenshot 2026-05-10 093005.png" alt="Login Screen" width="400" /> |
 
