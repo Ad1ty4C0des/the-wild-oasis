@@ -51,13 +51,11 @@ Recently redesigned with a "**Luxe-Naturalist**" aesthetic, the application prov
 
 ## 📸 Sneak Peek
 
-*(You can add your own screenshots to the `public` folder and update the paths below!)*
-
 | Dashboard (Light Mode) | Dashboard (Dark Mode) |
 | :---: | :---: |
-| <img src="https://via.placeholder.com/600x350/F9F6F0/1b4332?text=Dashboard+Light+Mode" width="400" /> | <img src="https://via.placeholder.com/600x350/18212f/6fbc94?text=Dashboard+Dark+Mode" width="400" /> |
+| <img src="public/dashboard-light.png" alt="Dashboard Light Mode" width="400" /> | <img src="public/dashboard-dark.png" alt="Dashboard Dark Mode" width="400" /> |
 | **Bookings View** | **Login Screen** |
-| <img src="https://via.placeholder.com/600x350/f9f9ff/1b4332?text=Bookings+Table" width="400" /> | <img src="https://via.placeholder.com/600x350/1b4332/ffffff?text=Login+Screen" width="400" /> |
+| <img src="public/bookings.png" alt="Bookings View" width="400" /> | <img src="public/login.png" alt="Login Screen" width="400" /> |
 
 ## 💻 Installation & Setup
 
