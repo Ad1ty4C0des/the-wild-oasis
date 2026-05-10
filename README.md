@@ -53,9 +53,9 @@ Recently redesigned with a "**Luxe-Naturalist**" aesthetic, the application prov
 
 | Dashboard (Light Mode) | Dashboard (Dark Mode) |
 | :---: | :---: |
-| <img src="public/dashboard-light.png" alt="Dashboard Light Mode" width="400" /> | <img src="public/dashboard-dark.png" alt="Dashboard Dark Mode" width="400" /> |
+| <img src="./public/dashboard-light.png" alt="Dashboard Light Mode" width="400" /> | <img src="./public/dashboard-dark.png" alt="Dashboard Dark Mode" width="400" /> |
 | **Bookings View** | **Login Screen** |
-| <img src="public/bookings.png" alt="Bookings View" width="400" /> | <img src="public/login.png" alt="Login Screen" width="400" /> |
+| <img src="./public/bookings.png" alt="Bookings View" width="400" /> | <img src="./public/login.png" alt="Login Screen" width="400" /> |
 
 ## 💻 Installation & Setup
 
