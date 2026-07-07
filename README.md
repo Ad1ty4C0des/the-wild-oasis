@@ -13,6 +13,7 @@
   ![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
   ![Styled Components](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white)
   ![React Query](https://img.shields.io/badge/-React%20Query-FF4154?style=for-the-badge&logo=react%20query&logoColor=white)
+  [![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=for-the-badge&logo=docker&logoColor=white)](#-docker)
 
 </div>
 
@@ -49,6 +50,10 @@ Recently redesigned with a "**Luxe-Naturalist**" aesthetic, the application prov
 **Backend:**
 - **Supabase** — Open-source Firebase alternative (PostgreSQL database, Authentication, Storage)
 
+**Containerization:**
+- **Docker** — Multi-stage build (Node → Vite build → Nginx)
+- **Nginx** — Lightweight static file server with SPA routing
+
 ## 📸 Sneak Peek
 
 | Dashboard (Light Mode) | Dashboard (Dark Mode) |
@@ -83,6 +88,49 @@ Recently redesigned with a "**Luxe-Naturalist**" aesthetic, the application prov
    ```bash
    npm run dev
    ```
+
+### 🐳 Docker
+
+You can also run The Wild Oasis using Docker — no Node.js installation required.
+
+#### Quick Start (Docker Run)
+
+```bash
+# Build the image (env vars are baked in at build time by Vite)
+docker build -t wild-oasis:1.0 \
+  --build-arg VITE_SUPABASE_URL=your_supabase_url \
+  --build-arg VITE_SUPABASE_ANON_KEY=your_supabase_anon_key \
+  .
+
+# Run the container
+docker run -d --name wild-oasis-app -p 8080:80 wild-oasis:1.0
+```
+
+#### Using Docker Compose
+
+```bash
+# Build and start
+docker compose up -d --build
+
+# View logs
+docker compose logs -f
+
+# Stop
+docker compose down
+```
+
+#### Pull from Docker Hub
+
+No need to clone the repo — just pull the pre-built image:
+
+```bash
+docker pull adityapratap07/wild-oasis:latest
+docker run -d --name wild-oasis-app -p 8080:80 adityapratap07/wild-oasis:latest
+```
+
+The app will be running at **`http://localhost:8080`**
+
+> **Note:** Unlike traditional Node.js apps, Vite bakes environment variables into the JS bundle at **build time**. The Docker Hub image comes pre-configured with Supabase credentials. To use your own, rebuild the image with your `--build-arg` values.
 
 ## 🗄️ Database Configuration
 

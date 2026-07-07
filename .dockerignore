@@ -1,0 +1,12 @@
+node_modules
+dist
+.git
+.gitignore
+.env
+.env.*
+*.md
+build_output.txt
+netlify.toml
+vercel.json
+stitch_wild_oasis_redesign/
+vite.config.js.timestamp-*

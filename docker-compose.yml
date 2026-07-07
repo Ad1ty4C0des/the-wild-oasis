@@ -1,0 +1,11 @@
+services:
+  wild-oasis:
+    build:
+      context: .
+      args:
+        VITE_SUPABASE_URL: https://wxsewjhnmdvieqwyenem.supabase.co
+        VITE_SUPABASE_ANON_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind4c2V3amhubWR2aWVxd3llbmVtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcwMTczNjEsImV4cCI6MjA5MjU5MzM2MX0.34nKJ-yofdCQ3WQP9iOGXStmp0q_7SyVBHOwzFsCM4I
+    container_name: wild-oasis-app
+    restart: unless-stopped
+    ports:
+      - "8080:80"
