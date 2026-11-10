@@ -7,6 +7,7 @@ import { useCabins } from "../cabins/useCabins";
 import SalesChart from "./SalesChart";
 import DurationChart from "./DurationChart";
 import TodayActivity from "../check-in-out/TodayActivity";
+import { useDemoSimulator } from "./useDemoSimulator";
 
 const StyledDashboardLayout = styled.div`
   display: grid;
@@ -25,6 +26,9 @@ const StyledDashboardLayout = styled.div`
 `;
 
 function DashboardLayout() {
+  // Auto-seed demo data if stale (keeps the live demo alive)
+  useDemoSimulator();
+
   const { bookings, isLoading: isLoading1 } = useRecentBookings();
   const { confirmedStays, isLoading: isLoading2, numDays } = useRecentStays();
   const { cabins, isLoading: isLoading3 } = useCabins();
