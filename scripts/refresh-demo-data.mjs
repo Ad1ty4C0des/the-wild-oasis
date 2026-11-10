@@ -27,7 +27,10 @@ if (!supabaseUrl || !supabaseKey) {
   process.exit(1);
 }
 
-const supabase = createClient(supabaseUrl, supabaseKey);
+const supabase = createClient(supabaseUrl, supabaseKey, {
+  realtime: { transport: undefined },
+  auth: { persistSession: false },
+});
 
 // ── Helpers ───────────────────────────────────────────────────────────
 function addDays(date, days) {
