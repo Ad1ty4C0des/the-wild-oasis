@@ -6,6 +6,7 @@ import {
   HiOutlineCog6Tooth,
   HiOutlineHome,
   HiOutlineHomeModern,
+  HiOutlineSparkles,
   HiOutlineUsers,
 } from "react-icons/hi2";
 
@@ -110,6 +111,7 @@ const NAV_ITEMS = [
   { to: "/dashboard", icon: HiOutlineHome, label: "Dashboard" },
   { to: "/bookings", icon: HiOutlineCalendarDays, label: "Bookings" },
   { to: "/cabins", icon: HiOutlineHomeModern, label: "Cabins" },
+  { to: "/smart-pricing", icon: HiOutlineSparkles, label: "AI Pricing" },
   { to: "/users", icon: HiOutlineUsers, label: "Users" },
   { to: "/settings", icon: HiOutlineCog6Tooth, label: "Settings" },
 ];

@@ -3,6 +3,7 @@ import { Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import Header from "./Header";
 import styled from "styled-components";
+import AIChatButton from "../features/ai-chat/AIChatButton";
 
 const StyledAppLayout = styled.div`
   display: grid;
@@ -66,6 +67,7 @@ function AppLayout() {
           <Outlet />
         </Container>
       </Main>
+      <AIChatButton />
     </StyledAppLayout>
   );
 }

@@ -62,6 +62,22 @@ export async function createEditCabin(newCabin, id) {
   return data;
 }
 
+export async function updateCabinPrice(id, regularPrice) {
+  const { data, error } = await supabase
+    .from("cabins")
+    .update({ regularPrice })
+    .eq("id", id)
+    .select()
+    .single();
+
+  if (error) {
+    console.error(error);
+    throw new Error("Cabin price could not be updated");
+  }
+
+  return data;
+}
+
 export async function deleteCabin(id) {
   const { error } = await supabase.from("cabins").delete().eq("id", id);
 
