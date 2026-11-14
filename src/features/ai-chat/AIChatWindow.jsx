@@ -316,7 +316,7 @@ function AIChatWindow({ onClose }) {
           <HiOutlineSparkles /> AI Operations Assistant
         </h3>
         <div style={{ display: "flex", alignItems: "center", gap: "0.8rem" }}>
-          
+         
           <CloseButton onClick={onClose} aria-label="Close Chat">
             <HiOutlineXMark />
           </CloseButton>

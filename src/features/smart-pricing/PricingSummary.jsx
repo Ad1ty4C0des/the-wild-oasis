@@ -142,7 +142,6 @@ function PricingSummary({ suggestions, analytics, isFetching, onRefresh }) {
           <div>
             <h3>
               Dynamic Revenue Optimization
-              
             </h3>
             <p>
               AI has analyzed historical occupancy trends, booking velocity, and
