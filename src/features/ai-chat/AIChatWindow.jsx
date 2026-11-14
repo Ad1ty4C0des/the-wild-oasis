@@ -316,7 +316,7 @@ function AIChatWindow({ onClose }) {
           <HiOutlineSparkles /> AI Operations Assistant
         </h3>
         <div style={{ display: "flex", alignItems: "center", gap: "0.8rem" }}>
-          <HeaderBadge>Gemini 3.5</HeaderBadge>
+          
           <CloseButton onClick={onClose} aria-label="Close Chat">
             <HiOutlineXMark />
           </CloseButton>
@@ -371,3 +371,4 @@ function AIChatWindow({ onClose }) {
 }
 
 export default AIChatWindow;
+

@@ -35,7 +35,7 @@ function SmartPricing() {
         <HeaderLeft>
           <Heading as="h1">AI Smart Pricing</Heading>
           <Subtitle>
-            Dynamic yield management powered by Gemini 3.5 Flash Lite analyzing historical booking patterns.
+            Dynamic yield management by analyzing historical booking patterns.
           </Subtitle>
         </HeaderLeft>
       </PageHeader>
@@ -48,3 +48,4 @@ function SmartPricing() {
 }
 
 export default SmartPricing;
+

@@ -142,7 +142,7 @@ function PricingSummary({ suggestions, analytics, isFetching, onRefresh }) {
           <div>
             <h3>
               Dynamic Revenue Optimization
-              <Badge>Gemini 3.5 Flash Lite</Badge>
+              
             </h3>
             <p>
               AI has analyzed historical occupancy trends, booking velocity, and

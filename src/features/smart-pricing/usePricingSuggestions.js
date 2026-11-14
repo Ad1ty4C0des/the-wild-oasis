@@ -20,3 +20,4 @@ export function usePricingSuggestions() {
     isFallback: Boolean(data?.isFallback),
   };
 }
+
