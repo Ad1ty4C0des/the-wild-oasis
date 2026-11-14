@@ -4,10 +4,12 @@
  * Runs daily via GitHub Actions to keep the live demo fresh.
  *
  * What it does:
- * 1. Clears all existing bookings
- * 2. Ensures guests exist in the database
- * 3. Generates a realistic rolling 90-day window of bookings
- * 4. Guarantees "Today's Activity" has arrivals & departures
+ * 1. Ensures guests exist in the database
+ * 2. Removes ONLY auto-generated demo bookings (tagged [AUTO-DEMO])
+ * 3. Preserves all user-created bookings
+ * 4. Generates a realistic rolling 90-day window of new demo bookings
+ * 5. Avoids cabin date conflicts with existing user bookings
+ * 6. Guarantees "Today's Activity" has arrivals & departures
  *
  * Usage: node scripts/refresh-demo-data.mjs
  *
@@ -202,6 +204,13 @@ function generateBookingDates() {
   return bookings;
 }
 
+// Tag used to identify auto-generated demo bookings
+const AUTO_DEMO_TAG = "[AUTO-DEMO]";
+
+function formatDate(date) {
+  return date.toISOString().slice(0, 10); // "YYYY-MM-DD"
+}
+
 // ── Main ──────────────────────────────────────────────────────────────
 async function main() {
   console.log("🏨 The Wild Oasis — Demo Data Refresh");
@@ -222,21 +231,66 @@ async function main() {
 
   console.log(`📊 Found ${guestRows.length} guests, ${cabinRows.length} cabins`);
 
-  // Step 3: Delete old bookings
-  const { error: deleteError } = await supabase.from("bookings").delete().gt("id", 0);
+  // Step 3: Delete ONLY auto-generated bookings (tagged with [AUTO-DEMO])
+  const { error: deleteError } = await supabase
+    .from("bookings")
+    .delete()
+    .like("observations", `${AUTO_DEMO_TAG}%`);
+
   if (deleteError) {
-    console.error("❌ Error deleting bookings:", deleteError.message);
+    console.error("❌ Error deleting auto-demo bookings:", deleteError.message);
     process.exit(1);
   }
-  console.log("🗑️  Cleared old bookings");
+  console.log("🗑️  Cleared old auto-demo bookings (user bookings preserved)");
+
+  // Step 3.5: Fetch remaining user-created bookings to avoid cabin date conflicts
+  const { data: userBookings } = await supabase
+    .from("bookings")
+    .select("cabinId, startDate, endDate");
+
+  const occupiedSlots = new Set();
+  if (userBookings) {
+    for (const b of userBookings) {
+      const start = new Date(b.startDate);
+      const end = new Date(b.endDate);
+      for (let d = new Date(start); d < end; d = addDays(d, 1)) {
+        occupiedSlots.add(`${b.cabinId}|${formatDate(d)}`);
+      }
+    }
+  }
 
   // Step 4: Generate and insert new bookings
   const templates = generateBookingDates();
   const guestIds = shuffleArray(guestRows.map((g) => g.id));
 
-  const finalBookings = templates.map((template, index) => {
-    const cabin = cabinRows[index % cabinRows.length];
+  const finalBookings = [];
+
+  for (let index = 0; index < templates.length; index++) {
+    const template = templates[index];
     const guestId = guestIds[index % guestIds.length];
+
+    // Find a cabin that doesn't conflict with user bookings for this date range
+    let cabin = null;
+    for (let attempt = 0; attempt < cabinRows.length; attempt++) {
+      const candidate = cabinRows[(index + attempt) % cabinRows.length];
+      let conflict = false;
+      const start = new Date(template.startDate);
+      const end = new Date(template.endDate);
+      for (let d = new Date(start); d < end; d = addDays(d, 1)) {
+        if (occupiedSlots.has(`${candidate.id}|${formatDate(d)}`)) {
+          conflict = true;
+          break;
+        }
+      }
+      if (!conflict) {
+        cabin = candidate;
+        break;
+      }
+    }
+
+    // If every cabin conflicts for this range, skip this booking
+    if (!cabin) continue;
+
     const numNights = diffDays(new Date(template.endDate), new Date(template.startDate));
     const numGuests = randomInt(1, 4);
     const hasBreakfast = Math.random() > 0.4;
@@ -245,7 +299,13 @@ async function main() {
     const totalPrice = cabinPrice + extrasPrice;
     const isPaid = template.status === "checked-out" ? true : template.status === "checked-in" ? Math.random() > 0.1 : Math.random() > 0.4;
 
-    return {
+    // Pick a human-readable observation, then prepend the auto-demo tag
+    const humanObs = randomChoice(OBSERVATIONS);
+    const taggedObs = humanObs
+      ? `${AUTO_DEMO_TAG} ${humanObs}`
+      : AUTO_DEMO_TAG;
+
+    finalBookings.push({
       created_at: template.created_at,
       startDate: template.startDate,
       endDate: template.endDate,
@@ -257,11 +317,18 @@ async function main() {
       status: template.status,
       hasBreakfast,
       isPaid,
-      observations: randomChoice(OBSERVATIONS),
+      observations: taggedObs,
       cabinId: cabin.id,
       guestId,
-    };
-  });
+    });
+
+    // Mark these slots as occupied so demo bookings don't conflict with each other
+    const start = new Date(template.startDate);
+    const end = new Date(template.endDate);
+    for (let d = new Date(start); d < end; d = addDays(d, 1)) {
+      occupiedSlots.add(`${cabin.id}|${formatDate(d)}`);
+    }
+  }
 
   // Insert in batches
   const BATCH_SIZE = 15;
@@ -283,7 +350,7 @@ async function main() {
   }, {});
 
   console.log("─".repeat(50));
-  console.log(`✅ Inserted ${inserted} bookings:`);
+  console.log(`✅ Inserted ${inserted} demo bookings (user bookings preserved):`);
   console.log(`   📤 Checked-out: ${statusCounts["checked-out"] || 0}`);
   console.log(`   🏨 Checked-in:  ${statusCounts["checked-in"] || 0}`);
   console.log(`   📋 Unconfirmed: ${statusCounts["unconfirmed"] || 0}`);

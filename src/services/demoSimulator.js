@@ -5,9 +5,11 @@
  *
  * Strategy:
  * 1. On dashboard load, checks if data is "fresh" (has bookings near today)
- * 2. If stale/empty, regenerates a realistic 90-day rolling window of bookings
- * 3. Ensures "Today's Activity" always has arrivals & departures
- * 4. Runs silently — no UI shown to the interviewer
+ * 2. If stale/empty, removes only auto-generated [AUTO-DEMO] bookings
+ * 3. Preserves all user-created bookings
+ * 4. Generates new demo bookings avoiding cabin date conflicts
+ * 5. Ensures "Today's Activity" always has arrivals & departures
+ * 6. Runs silently — no UI shown to the interviewer
  *
  * This runs ONLY when the data is stale. If the daily cron has already
  * refreshed the data, this does nothing.
@@ -251,8 +253,12 @@ async function ensureGuests() {
   }
 }
 
+// Tag used to identify auto-generated demo bookings
+const AUTO_DEMO_TAG = "[AUTO-DEMO]";
+
 /**
- * Main seeding function — clears old bookings and generates fresh ones.
+ * Main seeding function — removes only auto-generated bookings, preserves
+ * user-created ones, then generates fresh demo data.
  */
 async function seedFreshBookings() {
   console.log("[DemoSimulator] 🔄 Seeding fresh demo data...");
@@ -278,24 +284,66 @@ async function seedFreshBookings() {
   const guestIds = guestRows.map((g) => g.id);
   const cabins = cabinRows;
 
-  // Delete all existing bookings
+  // Delete ONLY auto-generated bookings (tagged with [AUTO-DEMO])
   const { error: deleteError } = await supabase
     .from("bookings")
     .delete()
-    .gt("id", 0);
+    .like("observations", `${AUTO_DEMO_TAG}%`);
 
   if (deleteError) {
-    console.error("[DemoSimulator] ❌ Error deleting bookings:", deleteError);
+    console.error("[DemoSimulator] ❌ Error deleting auto-demo bookings:", deleteError);
     return false;
+  }
+
+  // Fetch remaining user-created bookings to avoid cabin date conflicts
+  const { data: userBookings } = await supabase
+    .from("bookings")
+    .select("cabinId, startDate, endDate");
+
+  // Build a set of "cabinId|date" strings that are already occupied
+  const occupiedSlots = new Set();
+  if (userBookings) {
+    for (const b of userBookings) {
+      const start = new Date(b.startDate);
+      const end = new Date(b.endDate);
+      for (let d = new Date(start); d < end; d = add(d, { days: 1 })) {
+        occupiedSlots.add(`${b.cabinId}|${format(d, "yyyy-MM-dd")}`);
+      }
+    }
   }
 
   // Generate new bookings
   const bookingTemplates = generateBookingDates();
   const shuffledGuests = shuffleArray(guestIds);
 
-  const finalBookings = bookingTemplates.map((template, index) => {
-    const cabin = cabins[index % cabins.length];
+  const finalBookings = [];
+
+  for (let index = 0; index < bookingTemplates.length; index++) {
+    const template = bookingTemplates[index];
     const guestId = shuffledGuests[index % shuffledGuests.length];
+
+    // Find a cabin that doesn't conflict with user bookings for this date range
+    let cabin = null;
+    for (let attempt = 0; attempt < cabins.length; attempt++) {
+      const candidate = cabins[(index + attempt) % cabins.length];
+      let conflict = false;
+      const start = new Date(template.startDate);
+      const end = new Date(template.endDate);
+      for (let d = new Date(start); d < end; d = add(d, { days: 1 })) {
+        if (occupiedSlots.has(`${candidate.id}|${format(d, "yyyy-MM-dd")}`)) {
+          conflict = true;
+          break;
+        }
+      }
+      if (!conflict) {
+        cabin = candidate;
+        break;
+      }
+    }
+
+    // If every cabin conflicts for this range, skip this booking
+    if (!cabin) continue;
+
     const numNights = differenceInDays(
       new Date(template.endDate),
       new Date(template.startDate)
@@ -311,7 +359,13 @@ async function seedFreshBookings() {
         ? Math.random() > 0.1 
         : Math.random() > 0.4;
 
-    return {
+    // Pick a human-readable observation, then prepend the auto-demo tag
+    const humanObs = randomChoice(OBSERVATIONS);
+    const taggedObs = humanObs
+      ? `${AUTO_DEMO_TAG} ${humanObs}`
+      : AUTO_DEMO_TAG;
+
+    finalBookings.push({
       created_at: template.created_at,
       startDate: template.startDate,
       endDate: template.endDate,
@@ -323,11 +377,18 @@ async function seedFreshBookings() {
       status: template.status,
       hasBreakfast,
       isPaid,
-      observations: randomChoice(OBSERVATIONS),
+      observations: taggedObs,
       cabinId: cabin.id,
       guestId,
-    };
-  });
+    });
+
+    // Mark these slots as occupied so demo bookings don't conflict with each other
+    const start = new Date(template.startDate);
+    const end = new Date(template.endDate);
+    for (let d = new Date(start); d < end; d = add(d, { days: 1 })) {
+      occupiedSlots.add(`${cabin.id}|${format(d, "yyyy-MM-dd")}`);
+    }
+  }
 
   // Insert in batches to avoid payload limits
   const BATCH_SIZE = 15;
@@ -341,7 +402,7 @@ async function seedFreshBookings() {
   }
 
   console.log(
-    `[DemoSimulator] ✅ Seeded ${finalBookings.length} bookings successfully!`
+    `[DemoSimulator] ✅ Seeded ${finalBookings.length} demo bookings (user bookings preserved)!`
   );
   return true;
 }
